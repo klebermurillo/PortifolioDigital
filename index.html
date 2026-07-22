@@ -581,6 +581,39 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-weight: 700;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-preview .gallery-tag {
+      position: absolute;
+      left: 8px;
+      bottom: 8px;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffffff;
+      background: rgba(8, 17, 31, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .gallery-preview.no-image {
+      display: grid;
+      place-items: center;
+    }
+
+    .gallery-preview.no-image .gallery-tag {
+      position: static;
+      background: rgba(8, 17, 31, 0.35);
     }
 
     .gallery-item p {
@@ -1050,19 +1083,31 @@
 
     <div class="gallery stagger">
       <div class="gallery-item">
-        <div class="gallery-preview">Dashboard</div>
+        <div class="gallery-preview">
+          <img src="galeria/dashboard.png" alt="Imagem de dashboard" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+          <span class="gallery-tag">Dashboard</span>
+        </div>
         <p>Painel executivo com visão de indicadores e evolução temporal.</p>
       </div>
       <div class="gallery-item">
-        <div class="gallery-preview">Aplicação</div>
+        <div class="gallery-preview">
+          <img src="galeria/aplicacao.png" alt="Imagem de aplicação" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+          <span class="gallery-tag">Aplicação</span>
+        </div>
         <p>Interface de gestão operacional construída para uso interno.</p>
       </div>
       <div class="gallery-item">
-        <div class="gallery-preview">Fluxo</div>
+        <div class="gallery-preview">
+          <img src="galeria/fluxo.png" alt="Imagem de fluxo" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+          <span class="gallery-tag">Fluxo</span>
+        </div>
         <p>Automação de processo com etapas de validação e notificação.</p>
       </div>
       <div class="gallery-item">
-        <div class="gallery-preview">Arquitetura</div>
+        <div class="gallery-preview">
+          <img src="galeria/arquitetura.png" alt="Imagem de arquitetura" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+          <span class="gallery-tag">Arquitetura</span>
+        </div>
         <p>Diagrama simplificado de integração entre sistemas e camada analítica.</p>
       </div>
     </div>
