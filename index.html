@@ -630,24 +630,25 @@
       top: 16px;
       right: 16px;
       z-index: 2;
-      width: 42px;
-      height: 42px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      background: rgba(8, 17, 31, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      background: linear-gradient(135deg, rgba(18, 96, 255, 0.9), rgba(30, 125, 255, 0.92));
       color: #ffffff;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
-      transition: transform 0.2s ease, background 0.2s ease;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
+      transition: transform 0.2s ease, filter 0.2s ease;
     }
 
     .carousel-info-button:hover {
-      transform: scale(1.05);
-      background: rgba(8, 17, 31, 0.88);
+      transform: scale(1.08);
+      filter: brightness(1.08);
     }
 
     .carousel-copy {
@@ -668,8 +669,9 @@
     }
 
     .carousel-copy p {
-      color: var(--muted);
-      font-size: 14px;
+      color: var(--body-strong);
+      font-size: 15px;
+      line-height: 1.7;
     }
 
     .benefits-title {
@@ -685,6 +687,7 @@
       margin-left: 18px;
       color: var(--body-strong);
       font-size: 14px;
+      line-height: 1.6;
     }
 
     .benefits-list li + li {
@@ -695,6 +698,27 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+    }
+
+    .carousel-details-trigger {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      background: var(--accent-soft);
+      color: var(--heading);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      width: fit-content;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .carousel-details-trigger:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
     }
 
     .carousel-shell {
@@ -1016,6 +1040,12 @@
       .carousel-control {
         width: 40px;
         height: 40px;
+      }
+
+      .carousel-info-button {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
       }
 
       .carousel-footer {
@@ -1379,6 +1409,7 @@
                   <li>Redução de erros manuais.</li>
                   <li>Ganho de produtividade operacional.</li>
                 </ul>
+                <button class="carousel-details-trigger" type="button">Ver explicação completa</button>
               </div>
             </div>
           </article>
@@ -1409,6 +1440,7 @@
                   <li>Acesso rápido aos indicadores de negócio.</li>
                   <li>Apoio à tomada de decisão gerencial.</li>
                 </ul>
+                <button class="carousel-details-trigger" type="button">Ver explicação completa</button>
               </div>
             </div>
           </article>
@@ -1439,6 +1471,7 @@
                   <li>Maior confiabilidade das informações.</li>
                   <li>Visão executiva e operacional em tempo real.</li>
                 </ul>
+                <button class="carousel-details-trigger" type="button">Ver explicação completa</button>
               </div>
             </div>
           </article>
@@ -1483,6 +1516,7 @@
                   <span class="chip">ETL/ELT</span>
                   <span class="chip">Governança de Dados</span>
                 </div>
+                <button class="carousel-details-trigger" type="button">Ver explicação completa</button>
               </div>
             </div>
           </article>
@@ -1828,7 +1862,7 @@
     var modalBenefits = document.getElementById("info-modal-benefits");
     var modalTech = document.getElementById("info-modal-tech");
     var closeButton = document.getElementById("info-modal-close");
-    var infoButtons = Array.from(document.querySelectorAll(".carousel-info-button"));
+    var infoButtons = Array.from(document.querySelectorAll(".carousel-info-button, .carousel-details-trigger"));
 
     function closeModal() {
       modal.classList.remove("open");
