@@ -565,21 +565,17 @@
 
     .carousel-slide {
       min-width: 100%;
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
-      gap: 0;
-      align-items: stretch;
+      position: relative;
     }
 
     .carousel-visual {
-      min-height: 360px;
-      aspect-ratio: 16 / 9;
+      height: clamp(260px, 34vw, 420px);
       position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 14px 16px 64px;
       background:
         linear-gradient(135deg, rgba(18, 96, 255, 0.22), rgba(58, 173, 255, 0.22)),
         repeating-linear-gradient(
@@ -595,6 +591,7 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
+      object-position: center;
       display: block;
       position: relative;
       z-index: 1;
@@ -612,7 +609,7 @@
     .carousel-tag {
       position: absolute;
       left: 18px;
-      bottom: 18px;
+      bottom: 14px;
       z-index: 1;
       border-radius: 999px;
       padding: 6px 10px;
@@ -627,8 +624,8 @@
 
     .carousel-info-button {
       position: absolute;
-      top: 16px;
-      right: 16px;
+      top: 14px;
+      right: 14px;
       z-index: 2;
       width: 48px;
       height: 48px;
@@ -651,13 +648,31 @@
       filter: brightness(1.08);
     }
 
+    .carousel-open-text {
+      position: absolute;
+      right: 18px;
+      bottom: 12px;
+      z-index: 2;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      background: rgba(8, 17, 31, 0.74);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 8px 11px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .carousel-open-text:hover {
+      transform: translateY(-1px);
+      background: rgba(8, 17, 31, 0.9);
+    }
+
     .carousel-copy {
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 16px;
-      background: var(--surface-strong);
+      display: none;
     }
 
     .carousel-copy h3 {
@@ -1014,12 +1029,8 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .carousel-slide {
-        grid-template-columns: 1fr;
-      }
-
       .carousel-visual {
-        min-height: 240px;
+        height: clamp(220px, 58vw, 320px);
       }
     }
 
@@ -1046,6 +1057,13 @@
         width: 44px;
         height: 44px;
         font-size: 18px;
+      }
+
+      .carousel-open-text {
+        right: 12px;
+        bottom: 10px;
+        font-size: 10px;
+        padding: 7px 9px;
       }
 
       .carousel-footer {
@@ -1386,6 +1404,7 @@
               <img src="galeria/FLUXO.png" alt="Fluxo automatizado de gestão documental" loading="lazy">
               <button class="carousel-info-button" type="button" aria-label="Abrir detalhes da imagem">i</button>
               <span class="carousel-tag">Fluxo</span>
+              <button class="carousel-open-text" type="button">Ver detalhes</button>
             </div>
             <div class="carousel-copy">
               <div>
@@ -1419,6 +1438,7 @@
               <img src="galeria/APLICACAO.png" alt="Aplicação corporativa para simulação e governança" loading="lazy">
               <button class="carousel-info-button" type="button" aria-label="Abrir detalhes da imagem">i</button>
               <span class="carousel-tag">Aplicação</span>
+              <button class="carousel-open-text" type="button">Ver detalhes</button>
             </div>
             <div class="carousel-copy">
               <div>
@@ -1450,6 +1470,7 @@
               <img src="galeria/DASHBOARD.png" alt="Dashboard automatizado de CapEx e Forecast" loading="lazy">
               <button class="carousel-info-button" type="button" aria-label="Abrir detalhes da imagem">i</button>
               <span class="carousel-tag">Dashboard</span>
+              <button class="carousel-open-text" type="button">Ver detalhes</button>
             </div>
             <div class="carousel-copy">
               <div>
@@ -1481,6 +1502,7 @@
               <img src="galeria/ARQUITETURA.png" alt="Arquitetura de integração e camada analítica" loading="lazy">
               <button class="carousel-info-button" type="button" aria-label="Abrir detalhes da imagem">i</button>
               <span class="carousel-tag">Arquitetura</span>
+              <button class="carousel-open-text" type="button">Ver detalhes</button>
             </div>
             <div class="carousel-copy">
               <div>
@@ -1862,7 +1884,7 @@
     var modalBenefits = document.getElementById("info-modal-benefits");
     var modalTech = document.getElementById("info-modal-tech");
     var closeButton = document.getElementById("info-modal-close");
-    var infoButtons = Array.from(document.querySelectorAll(".carousel-info-button, .carousel-details-trigger"));
+    var infoButtons = Array.from(document.querySelectorAll(".carousel-info-button, .carousel-open-text, .carousel-details-trigger"));
 
     function closeModal() {
       modal.classList.remove("open");
