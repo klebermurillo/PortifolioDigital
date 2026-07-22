@@ -548,77 +548,192 @@
       color: var(--after-text);
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 12px;
-    }
-
-    .gallery-item {
+    .carousel {
+      position: relative;
       border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px;
-      background: var(--surface-strong);
+      border-radius: 24px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    .gallery-preview {
-      height: 130px;
-      border-radius: 10px;
-      margin-bottom: 10px;
+    .carousel-track {
+      display: flex;
+      transition: transform 0.35s ease;
+      will-change: transform;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .carousel-visual {
+      min-height: 420px;
+      position: relative;
+      overflow: hidden;
       background:
         linear-gradient(135deg, rgba(18, 96, 255, 0.22), rgba(58, 173, 255, 0.22)),
         repeating-linear-gradient(
           45deg,
-          rgba(255, 255, 255, 0.4),
-          rgba(255, 255, 255, 0.4) 10px,
-          rgba(255, 255, 255, 0.65) 10px,
-          rgba(255, 255, 255, 0.65) 20px
+          rgba(255, 255, 255, 0.14),
+          rgba(255, 255, 255, 0.14) 10px,
+          rgba(255, 255, 255, 0.04) 10px,
+          rgba(255, 255, 255, 0.04) 20px
         );
-      display: grid;
-      place-items: center;
-      color: var(--preview-text);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 700;
-      position: relative;
-      overflow: hidden;
     }
 
-    .gallery-preview img {
+    .carousel-visual img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .gallery-preview .gallery-tag {
+    .carousel-visual::after {
+      content: "";
       position: absolute;
-      left: 8px;
-      bottom: 8px;
+      inset: auto 0 0 0;
+      height: 38%;
+      background: linear-gradient(180deg, transparent, rgba(8, 17, 31, 0.72));
+      pointer-events: none;
+    }
+
+    .carousel-tag {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      z-index: 1;
       border-radius: 999px;
-      padding: 4px 8px;
+      padding: 6px 10px;
       font-size: 10px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      font-weight: 700;
       color: #ffffff;
-      background: rgba(8, 17, 31, 0.65);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(8, 17, 31, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.22);
     }
 
-    .gallery-preview.no-image {
-      display: grid;
-      place-items: center;
+    .carousel-copy {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      background: var(--surface-strong);
     }
 
-    .gallery-preview.no-image .gallery-tag {
-      position: static;
-      background: rgba(8, 17, 31, 0.35);
+    .carousel-copy h3 {
+      font-size: 24px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--heading);
+      margin-bottom: 10px;
     }
 
-    .gallery-item p {
-      font-size: 13px;
+    .carousel-copy p {
       color: var(--muted);
+      font-size: 14px;
+    }
+
+    .benefits-title {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .benefits-list {
+      margin-left: 18px;
+      color: var(--body-strong);
+      font-size: 14px;
+    }
+
+    .benefits-list li + li {
+      margin-top: 4px;
+    }
+
+    .carousel-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .carousel-shell {
+      position: relative;
+    }
+
+    .carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(8, 17, 31, 0.72);
+      color: #ffffff;
+      font-size: 20px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .carousel-control:hover {
+      transform: translateY(-50%) scale(1.04);
+      background: rgba(8, 17, 31, 0.88);
+    }
+
+    .carousel-control.prev {
+      left: 16px;
+    }
+
+    .carousel-control.next {
+      right: 16px;
+    }
+
+    .carousel-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 20px;
+      border-top: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .carousel-caption {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      background: rgba(103, 168, 255, 0.28);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .carousel-dot.active {
+      transform: scale(1.2);
+      background: var(--accent);
     }
 
     .experience {
@@ -754,6 +869,14 @@
       .metrics {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
+      .carousel-slide {
+        grid-template-columns: 1fr;
+      }
+
+      .carousel-visual {
+        min-height: 280px;
+      }
     }
 
     @media (max-width: 760px) {
@@ -768,6 +891,21 @@
 
       .theme-toggle {
         width: 100%;
+      }
+
+      .carousel-control {
+        width: 40px;
+        height: 40px;
+      }
+
+      .carousel-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .carousel-dots {
+        width: 100%;
+        justify-content: flex-start;
       }
 
       main {
@@ -1081,34 +1219,152 @@
       </p>
     </div>
 
-    <div class="gallery stagger">
-      <div class="gallery-item">
-        <div class="gallery-preview">
-          <img src="galeria/DASHBOARD.png" alt="Imagem de dashboard" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
-          <span class="gallery-tag">Dashboard</span>
+    <div class="carousel-shell stagger">
+      <div class="carousel" id="project-carousel" aria-label="Galeria de projetos em carrossel">
+        <button class="carousel-control prev" type="button" id="carousel-prev" aria-label="Projeto anterior">&#8249;</button>
+        <div class="carousel-track" id="carousel-track">
+          <article class="carousel-slide">
+            <div class="carousel-visual">
+              <img src="galeria/FLUXO.png" alt="Fluxo automatizado de gestão documental" loading="lazy">
+              <span class="carousel-tag">Fluxo</span>
+            </div>
+            <div class="carousel-copy">
+              <div>
+                <span class="label">Power Automate + SharePoint</span>
+                <h3>Automação Inteligente de Gestão Documental</h3>
+                <p>
+                  Fluxo automatizado integrado ao Power Apps responsável pelo processamento das solicitações realizadas pelos usuários. Após o upload dos documentos na aplicação, a automação cria toda a estrutura de pastas e subpastas no SharePoint de forma padronizada, realiza validações de documentos obrigatórios e envia notificações automáticas por e-mail informando atualizações, pendências ou ausência de arquivos.
+                </p>
+                <p>
+                  A solução elimina atividades operacionais repetitivas e garante maior controle sobre a gestão documental.
+                </p>
+              </div>
+              <div>
+                <div class="benefits-title">Principais benefícios</div>
+                <ul class="benefits-list">
+                  <li>Integração nativa entre Power Apps, Power Automate e SharePoint.</li>
+                  <li>Criação automática de estruturas documentais complexas.</li>
+                  <li>Controle de documentos obrigatórios.</li>
+                  <li>Alertas automáticos de atualização e pendência.</li>
+                  <li>Padronização dos processos.</li>
+                  <li>Redução de erros manuais.</li>
+                  <li>Ganho de produtividade operacional.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="carousel-slide">
+            <div class="carousel-visual">
+              <img src="galeria/APLICACAO.png" alt="Aplicação corporativa para simulação e governança" loading="lazy">
+              <span class="carousel-tag">Aplicação</span>
+            </div>
+            <div class="carousel-copy">
+              <div>
+                <span class="label">Power Apps</span>
+                <h3>Aplicação Corporativa para Simulação e Governança</h3>
+                <p>
+                  Aplicação corporativa desenvolvida em Power Apps para centralizar análises, simulações e acompanhamento de indicadores estratégicos. A solução oferece interface intuitiva para consulta de informações, avaliação de cenários, suporte à tomada de decisão e acesso integrado a diferentes módulos de gestão.
+                </p>
+                <p>
+                  O resultado é maior agilidade, autonomia e consistência no uso das informações estratégicas.
+                </p>
+              </div>
+              <div>
+                <div class="benefits-title">Principais benefícios</div>
+                <ul class="benefits-list">
+                  <li>Centralização das informações estratégicas.</li>
+                  <li>Interface amigável e de fácil utilização.</li>
+                  <li>Simulação de cenários e análises de impacto.</li>
+                  <li>Acesso rápido aos indicadores de negócio.</li>
+                  <li>Apoio à tomada de decisão gerencial.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="carousel-slide">
+            <div class="carousel-visual">
+              <img src="galeria/DASHBOARD.png" alt="Dashboard automatizado de CapEx e Forecast" loading="lazy">
+              <span class="carousel-tag">Dashboard</span>
+            </div>
+            <div class="carousel-copy">
+              <div>
+                <span class="label">Power BI</span>
+                <h3>Dashboard Automatizado de CapEx e Forecast</h3>
+                <p>
+                  Dashboard desenvolvido em Power BI para acompanhamento de CapEx, orçamento e forecast, totalmente integrado às bases corporativas. A solução realiza atualização automática dos indicadores sempre que novos dados são disponibilizados nas fontes de informação.
+                </p>
+                <p>
+                  Isso garante visibilidade em tempo real da execução financeira, desvios orçamentários e projeções futuras para suporte à tomada de decisão.
+                </p>
+              </div>
+              <div>
+                <div class="benefits-title">Principais benefícios</div>
+                <ul class="benefits-list">
+                  <li>Atualização automática dos dados.</li>
+                  <li>Monitoramento contínuo de CapEx e Forecast.</li>
+                  <li>Eliminação de consolidações manuais.</li>
+                  <li>Maior confiabilidade das informações.</li>
+                  <li>Visão executiva e operacional em tempo real.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="carousel-slide">
+            <div class="carousel-visual">
+              <img src="galeria/ARQUITETURA.png" alt="Arquitetura de integração e camada analítica" loading="lazy">
+              <span class="carousel-tag">Arquitetura</span>
+            </div>
+            <div class="carousel-copy">
+              <div>
+                <span class="label">Databricks + SAP + Primavera + Power Platform</span>
+                <h3>Arquitetura de Integração e Camada Analítica</h3>
+                <p>
+                  Arquitetura de dados concebida para centralizar e transformar informações provenientes de sistemas corporativos em uma plataforma analítica unificada. Utilizando Databricks como camada principal de processamento, os dados são ingeridos, tratados, enriquecidos e organizados em camadas Bronze, Silver e Gold.
+                </p>
+                <p>
+                  Após o processamento, os dados são disponibilizados para consumo por soluções analíticas e aplicações corporativas, permitindo análises em tempo real e suporte estratégico à tomada de decisão.
+                </p>
+              </div>
+              <div>
+                <div class="benefits-title">Principais benefícios</div>
+                <ul class="benefits-list">
+                  <li>Integração de múltiplos sistemas corporativos.</li>
+                  <li>Processamento e tratamento centralizado de dados no Databricks.</li>
+                  <li>Estruturação em camadas Bronze, Silver e Gold para maior confiabilidade.</li>
+                  <li>Governança, segurança e rastreabilidade dos dados.</li>
+                  <li>Disponibilização de informações para Power BI e Power Apps.</li>
+                  <li>Redução do tempo de consolidação e preparação de dados.</li>
+                  <li>Base escalável para análises avançadas e automações corporativas.</li>
+                </ul>
+                <div class="carousel-tech" style="margin-top: 14px;">
+                  <span class="chip">Databricks</span>
+                  <span class="chip">SAP</span>
+                  <span class="chip">Oracle Primavera P6</span>
+                  <span class="chip">Data Lake</span>
+                  <span class="chip">Data Warehouse</span>
+                  <span class="chip">Power BI</span>
+                  <span class="chip">Power Apps</span>
+                  <span class="chip">APIs</span>
+                  <span class="chip">ETL/ELT</span>
+                  <span class="chip">Governança de Dados</span>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
-        <p>Painel executivo com visão de indicadores e evolução temporal.</p>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-preview">
-          <img src="galeria/APLICACAO.png" alt="Imagem de aplicação" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
-          <span class="gallery-tag">Aplicação</span>
+        <button class="carousel-control next" type="button" id="carousel-next" aria-label="Próximo projeto">&#8250;</button>
+        <div class="carousel-footer">
+          <div class="carousel-caption" id="carousel-caption">1 / 4 · Fluxo automatizado, aplicação corporativa, dashboard analítico e arquitetura de dados.</div>
+          <div class="carousel-dots" id="carousel-dots">
+            <button class="carousel-dot active" type="button" aria-label="Ir para slide 1" data-slide="0"></button>
+            <button class="carousel-dot" type="button" aria-label="Ir para slide 2" data-slide="1"></button>
+            <button class="carousel-dot" type="button" aria-label="Ir para slide 3" data-slide="2"></button>
+            <button class="carousel-dot" type="button" aria-label="Ir para slide 4" data-slide="3"></button>
+          </div>
         </div>
-        <p>Interface de gestão operacional construída para uso interno.</p>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-preview">
-          <img src="galeria/FLUXO.png" alt="Imagem de fluxo" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
-          <span class="gallery-tag">Fluxo</span>
-        </div>
-        <p>Automação de processo com etapas de validação e notificação.</p>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-preview">
-          <img src="galeria/ARQUITETURA.png" alt="Imagem de arquitetura" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
-          <span class="gallery-tag">Arquitetura</span>
-        </div>
-        <p>Diagrama simplificado de integração entre sistemas e camada analítica.</p>
       </div>
     </div>
 
@@ -1314,6 +1570,97 @@
     applyTheme(nextTheme);
   }
 
+  function initializeCarousel() {
+    var carousel = document.getElementById("project-carousel");
+    if (!carousel) {
+      return;
+    }
+
+    var track = document.getElementById("carousel-track");
+    var slides = Array.from(track.children);
+    var prevButton = document.getElementById("carousel-prev");
+    var nextButton = document.getElementById("carousel-next");
+    var dots = Array.from(document.querySelectorAll(".carousel-dot"));
+    var caption = document.getElementById("carousel-caption");
+    var captions = [
+      "1 / 4 · Automação documental com Power Automate, Power Apps e SharePoint.",
+      "2 / 4 · Aplicação corporativa para análise, simulação e governança.",
+      "3 / 4 · Dashboard automatizado para CapEx, orçamento e forecast.",
+      "4 / 4 · Arquitetura analítica com integração entre sistemas corporativos."
+    ];
+    var currentIndex = 0;
+    var touchStartX = 0;
+    var touchDeltaX = 0;
+
+    function renderCarousel(index) {
+      currentIndex = index;
+      track.style.transform = "translateX(-" + (index * 100) + "%)";
+      dots.forEach(function(dot, dotIndex) {
+        dot.classList.toggle("active", dotIndex === index);
+        dot.setAttribute("aria-current", dotIndex === index ? "true" : "false");
+      });
+      if (caption) {
+        caption.textContent = captions[index];
+      }
+    }
+
+    function goToSlide(index) {
+      var normalizedIndex = (index + slides.length) % slides.length;
+      renderCarousel(normalizedIndex);
+    }
+
+    if (prevButton) {
+      prevButton.addEventListener("click", function() {
+        goToSlide(currentIndex - 1);
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener("click", function() {
+        goToSlide(currentIndex + 1);
+      });
+    }
+
+    dots.forEach(function(dot) {
+      dot.addEventListener("click", function() {
+        goToSlide(Number(dot.getAttribute("data-slide")));
+      });
+    });
+
+    carousel.addEventListener("keydown", function(event) {
+      if (event.key === "ArrowLeft") {
+        goToSlide(currentIndex - 1);
+      }
+      if (event.key === "ArrowRight") {
+        goToSlide(currentIndex + 1);
+      }
+    });
+
+    carousel.setAttribute("tabindex", "0");
+
+    track.addEventListener("touchstart", function(event) {
+      touchStartX = event.changedTouches[0].clientX;
+      touchDeltaX = 0;
+    }, { passive: true });
+
+    track.addEventListener("touchmove", function(event) {
+      touchDeltaX = event.changedTouches[0].clientX - touchStartX;
+    }, { passive: true });
+
+    track.addEventListener("touchend", function() {
+      if (Math.abs(touchDeltaX) < 40) {
+        return;
+      }
+      if (touchDeltaX > 0) {
+        goToSlide(currentIndex - 1);
+        return;
+      }
+      goToSlide(currentIndex + 1);
+    }, { passive: true });
+
+    renderCarousel(0);
+  }
+
   function showSection(id) {
     document.querySelectorAll("section").forEach(function(section) {
       section.classList.remove("active");
@@ -1333,6 +1680,7 @@
   }
 
   initializeTheme();
+  initializeCarousel();
   var themeToggleButton = document.getElementById("theme-toggle");
   if (themeToggleButton) {
     themeToggleButton.addEventListener("click", toggleTheme);
