@@ -1,0 +1,46 @@
+MURILO QUITZAU
+Curriculo Publico - Versao para Candidaturas
+
+RESUMO PROFISSIONAL
+Analista de Tecnologia com foco em automacao de processos, desenvolvimento de solucoes corporativas e analise de dados para apoio a decisoes estrategicas. Experiencia em ambientes corporativos de media e alta complexidade, com foco em produtividade, padronizacao e governanca.
+
+AREAS DE ATUACAO
+- Automacao de processos e fluxos corporativos
+- Desenvolvimento de aplicacoes internas (low-code)
+- BI e visualizacao de indicadores executivos e operacionais
+- Integracao de dados e estruturacao de bases analiticas
+- Suporte a decisao com dados confiaveis
+
+TECNOLOGIAS PRINCIPAIS
+- Power BI
+- Power Apps
+- Power Automate
+- SQL
+- Python
+- Databricks
+- SageMaker
+- Power Pages
+- Dynamics 365
+- SharePoint
+
+EXPERIENCIA EM PROJETOS (RESUMO PUBLICO)
+- Painel Executivo de Investimentos:
+  Consolidacao de indicadores para acompanhamento gerencial e tomada de decisao.
+- Sistema Interno de Gestao de Demandas:
+  Aplicacao corporativa com fluxo de aprovacao e historico de status.
+- Fluxo de Aprovacao e Notificacao:
+  Automacao ponta a ponta para validacao, notificacao e atualizacao de bases.
+- Pipeline para Base Analitica:
+  Tratamento e transformacao de dados para consumo em BI.
+- Portal de Solicitacoes e Servicos:
+  Portal com formularios e integracoes para padronizacao do atendimento interno.
+
+OBJETIVO
+Atuar em oportunidades onde possa combinar visao analitica, automacao e tecnologia para gerar impacto pratico no negocio.
+
+OBSERVACAO DE PRIVACIDADE
+Este documento e uma versao publica. Informacoes sensiveis, nomes de clientes e dados internos foram omitidos ou adaptados para preservar confidencialidade.
+
+CONTATO
+LinkedIn: linkedin.com/in/muriloquitzau/
+GitHub: github.com/klebermurillo
