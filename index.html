@@ -569,13 +569,13 @@
     }
 
     .carousel-visual {
-      height: clamp(260px, 34vw, 420px);
+      height: clamp(300px, 40vw, 500px);
       position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 16px 64px;
+      padding: 8px 10px 58px;
       background:
         linear-gradient(135deg, rgba(18, 96, 255, 0.22), rgba(58, 173, 255, 0.22)),
         repeating-linear-gradient(
@@ -620,32 +620,6 @@
       color: #ffffff;
       background: rgba(8, 17, 31, 0.62);
       border: 1px solid rgba(255, 255, 255, 0.22);
-    }
-
-    .carousel-info-button {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      z-index: 2;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.38);
-      background: linear-gradient(135deg, rgba(18, 96, 255, 0.9), rgba(30, 125, 255, 0.92));
-      color: #ffffff;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      font-weight: 700;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
-      transition: transform 0.2s ease, filter 0.2s ease;
-    }
-
-    .carousel-info-button:hover {
-      transform: scale(1.08);
-      filter: brightness(1.08);
     }
 
     .carousel-open-text {
@@ -1030,7 +1004,7 @@
       }
 
       .carousel-visual {
-        height: clamp(220px, 58vw, 320px);
+        height: clamp(250px, 62vw, 360px);
       }
     }
 
@@ -1051,12 +1025,6 @@
       .carousel-control {
         width: 40px;
         height: 40px;
-      }
-
-      .carousel-info-button {
-        width: 44px;
-        height: 44px;
-        font-size: 18px;
       }
 
       .carousel-open-text {
@@ -1402,7 +1370,6 @@
           <article class="carousel-slide">
             <div class="carousel-visual">
               <img src="galeria/FLUXO.png" alt="Fluxo automatizado de gestão documental" loading="lazy">
-              <button class="carousel-info-button" type="button" aria-label="Abrir detalhes da imagem">i</button>
               <span class="carousel-tag">Fluxo</span>
               <button class="carousel-open-text" type="button">Ver detalhes</button>
             </div>
@@ -1436,7 +1403,6 @@
           <article class="carousel-slide">
             <div class="carousel-visual">
               <img src="galeria/APLICACAO.png" alt="Aplicação corporativa para simulação e governança" loading="lazy">
-              <button class="carousel-info-button" type="button" aria-label="Abrir detalhes da imagem">i</button>
               <span class="carousel-tag">Aplicação</span>
               <button class="carousel-open-text" type="button">Ver detalhes</button>
             </div>
@@ -1468,7 +1434,6 @@
           <article class="carousel-slide">
             <div class="carousel-visual">
               <img src="galeria/DASHBOARD.png" alt="Dashboard automatizado de CapEx e Forecast" loading="lazy">
-              <button class="carousel-info-button" type="button" aria-label="Abrir detalhes da imagem">i</button>
               <span class="carousel-tag">Dashboard</span>
               <button class="carousel-open-text" type="button">Ver detalhes</button>
             </div>
@@ -1500,7 +1465,6 @@
           <article class="carousel-slide">
             <div class="carousel-visual">
               <img src="galeria/ARQUITETURA.png" alt="Arquitetura de integração e camada analítica" loading="lazy">
-              <button class="carousel-info-button" type="button" aria-label="Abrir detalhes da imagem">i</button>
               <span class="carousel-tag">Arquitetura</span>
               <button class="carousel-open-text" type="button">Ver detalhes</button>
             </div>
@@ -1884,7 +1848,7 @@
     var modalBenefits = document.getElementById("info-modal-benefits");
     var modalTech = document.getElementById("info-modal-tech");
     var closeButton = document.getElementById("info-modal-close");
-    var infoButtons = Array.from(document.querySelectorAll(".carousel-info-button, .carousel-open-text, .carousel-details-trigger"));
+    var infoButtons = Array.from(document.querySelectorAll(".carousel-open-text, .carousel-details-trigger"));
 
     function closeModal() {
       modal.classList.remove("open");
