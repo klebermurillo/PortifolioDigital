@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfólio Digital | Murilo Quitzau</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio público de Murilo Quitzau com foco em automação, dados, BI e desenvolvimento de soluções corporativas.">
+  <meta property="og:title" content="Murilo Quitzau | Portfólio Digital">
+  <meta property="og:description" content="Soluções em Power Platform, Power BI, SQL, Python, Databricks e integração de sistemas.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://github.com/klebermurillo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #f4f8ff;
+      --bg-soft: #ecf2ff;
+      --surface: rgba(255, 255, 255, 0.72);
+      --surface-strong: #ffffff;
+      --text: #182036;
+      --muted: #55607a;
+      --line: rgba(72, 99, 176, 0.18);
+      --accent: #1260ff;
+      --accent-soft: rgba(18, 96, 255, 0.1);
+      --good: #0d8f5f;
+      --shadow: 0 20px 50px rgba(35, 64, 134, 0.14);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Outfit", sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      background:
+        radial-gradient(circle at 8% -15%, #d7e4ff 0%, transparent 45%),
+        radial-gradient(circle at 95% 10%, #cae8ff 0%, transparent 35%),
+        linear-gradient(180deg, var(--bg-main), var(--bg-soft));
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.36;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+      background: rgba(244, 248, 255, 0.75);
+    }
+
+    nav {
+      max-width: 1120px;
+      margin: auto;
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .nav-links a {
+      cursor: pointer;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 7px 13px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active-link {
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1120px;
+      margin: auto;
+      padding: 46px 22px 82px;
+    }
+
+    section {
+      display: none;
+      animation: reveal 0.45s ease both;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-header {
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-weight: 700;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .section-header h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .section-header p {
+      max-width: 760px;
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: 15px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .hero h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(34px, 6vw, 62px);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 640px;
+    }
+
+    .hero-note {
+      margin-top: 8px;
+      border-left: 3px solid var(--accent);
+      padding: 8px 0 8px 14px;
+      color: #304062;
+      font-size: 14px;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 11px 16px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: #ffffff;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(18, 96, 255, 0.35);
+    }
+
+    .btn.primary {
+      color: #ffffff;
+      background: linear-gradient(135deg, #1260ff, #2683ff);
+      border-color: transparent;
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .summary-item {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.82);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .summary-item-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .summary-item strong {
+      font-size: 15px;
+      font-weight: 700;
+      color: #202d49;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+      margin-bottom: 26px;
+    }
+
+    .metric {
+      border-radius: 14px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid var(--line);
+    }
+
+    .metric strong {
+      display: block;
+      color: #17306f;
+      font-size: 24px;
+      line-height: 1;
+      font-family: "Space Grotesk", sans-serif;
+      margin-bottom: 7px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: var(--surface-strong);
+      border-radius: 16px;
+      padding: 18px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(31, 75, 166, 0.14);
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .block-title {
+      font-size: 11px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text);
+      font-weight: 700;
+      margin-top: 12px;
+      margin-bottom: 4px;
+    }
+
+    .chip-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      font-size: 11px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 5px 9px;
+      color: #36425d;
+      background: #f8faff;
+    }
+
+    .tech-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .tech-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .tech-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .tech-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1f325b;
+    }
+
+    .tech-level {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .bar {
+      height: 7px;
+      border-radius: 999px;
+      background: #dde7ff;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #4c9fff, #1260ff);
+      width: 0;
+      animation: grow 0.9s ease forwards;
+    }
+
+    .fill.l95 { width: 95%; }
+    .fill.l90 { width: 90%; }
+    .fill.l85 { width: 85%; }
+    .fill.l80 { width: 80%; }
+    .fill.l75 { width: 75%; }
+    .fill.l70 { width: 70%; }
+
+    @keyframes grow {
+      from {
+        width: 0;
+      }
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .compare-card {
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .compare-title {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #22345b;
+    }
+
+    .before,
+    .after {
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .before {
+      background: #fff5f5;
+      border: 1px solid rgba(231, 88, 88, 0.24);
+      color: #703535;
+    }
+
+    .after {
+      background: #eefcf6;
+      border: 1px solid rgba(13, 143, 95, 0.25);
+      color: #1f5f43;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+    }
+
+    .gallery-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: #ffffff;
+    }
+
+    .gallery-preview {
+      height: 130px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background:
+        linear-gradient(135deg, rgba(18, 96, 255, 0.22), rgba(58, 173, 255, 0.22)),
+        repeating-linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.4),
+          rgba(255, 255, 255, 0.4) 10px,
+          rgba(255, 255, 255, 0.65) 10px,
+          rgba(255, 255, 255, 0.65) 20px
+        );
+      display: grid;
+      place-items: center;
+      color: #1e3b75;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .gallery-item p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .experience {
+      display: grid;
+      gap: 12px;
+    }
+
+    .job {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .job-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .job h3 {
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    .period {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .job ul {
+      margin-top: 10px;
+      margin-left: 18px;
+      color: #394862;
+      font-size: 14px;
+    }
+
+    .job li + li {
+      margin-top: 5px;
+    }
+
+    .contact-grid {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 10px;
+    }
+
+    .contact-item {
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--line);
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .contact-item:hover {
+      border-color: rgba(18, 96, 255, 0.35);
+      background: #f8fbff;
+    }
+
+    .contact-label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .contact-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: #23375e;
+      overflow-wrap: anywhere;
+    }
+
+    .privacy-note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #3d4e70;
+      border: 1px dashed rgba(18, 96, 255, 0.35);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: rgba(18, 96, 255, 0.05);
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      padding: 20px 16px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(244, 248, 255, 0.7);
+    }
+
+    .stagger > * {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: itemUp 0.4s ease forwards;
+    }
+
+    .stagger > *:nth-child(1) { animation-delay: 0.04s; }
+    .stagger > *:nth-child(2) { animation-delay: 0.08s; }
+    .stagger > *:nth-child(3) { animation-delay: 0.12s; }
+    .stagger > *:nth-child(4) { animation-delay: 0.16s; }
+    .stagger > *:nth-child(5) { animation-delay: 0.2s; }
+    .stagger > *:nth-child(6) { animation-delay: 0.24s; }
+
+    @keyframes itemUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      main {
+        padding: 34px 14px 70px;
+      }
+
+      .panel {
+        padding: 22px;
+      }
+
+      .hero-actions {
+        gap: 8px;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <div class="logo">M. Quitzau</div>
+    <div class="nav-links">
+      <a onclick="showSection('home')" class="active-link" id="nav-home">Início</a>
+      <a onclick="showSection('sobre')" id="nav-sobre">Sobre</a>
+      <a onclick="showSection('tecnologias')" id="nav-tecnologias">Tecnologias</a>
+      <a onclick="showSection('projetos')" id="nav-projetos">Projetos</a>
+      <a onclick="showSection('habilidades')" id="nav-habilidades">Habilidades</a>
+      <a onclick="showSection('experiencia')" id="nav-experiencia">Experiência</a>
+      <a onclick="showSection('contato')" id="nav-contato">Contato</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section id="home" class="active">
+    <div class="hero-grid">
+      <div class="panel hero">
+        <div class="eyebrow">Portfólio Digital</div>
+        <h1>Murilo <span>Quitzau</span></h1>
+        <p>
+          Atuo como Analista de Tecnologia com foco em automação de processos,
+          desenvolvimento de soluções corporativas e análise de dados para acelerar
+          operações e apoiar decisões estratégicas.
+        </p>
+        <p>
+          Minha atuação combina Power Platform, Power BI, Databricks, SQL, Python
+          e integração com sistemas corporativos para transformar problemas reais
+          em soluções práticas e escaláveis.
+        </p>
+        <div class="hero-note">
+          Este portfólio foi estruturado em formato público. Nomes de projetos, áreas,
+          números e dados sensíveis foram adaptados para preservar sigilo corporativo.
+        </div>
+        <div class="hero-actions">
+          <a class="btn primary" href="#" onclick="showSection('projetos')">Explorar Projetos</a>
+          <a class="btn" href="#" onclick="showSection('contato')">Falar Comigo</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="eyebrow">Visão Rápida</div>
+        <div class="summary-list stagger">
+          <div class="summary-item">
+            <div class="summary-item-title">Foco Principal</div>
+            <strong>Automação + Dados + Soluções Digitais</strong>
+          </div>
+          <div class="summary-item">
+            <div class="summary-item-title">Stack de Maior Atuação</div>
+            <strong>Power BI, Power Apps, Power Automate, SQL</strong>
+          </div>
+          <div class="summary-item">
+            <div class="summary-item-title">Contexto</div>
+            <strong>Ambientes corporativos de alta complexidade</strong>
+          </div>
+          <div class="summary-item">
+            <div class="summary-item-title">Objetivo</div>
+            <strong>Eficiência operacional e decisão orientada a dados</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="metrics stagger">
+      <div class="metric">
+        <strong>BI</strong>
+        <span>Dashboards executivos e operacionais com foco em ação</span>
+      </div>
+      <div class="metric">
+        <strong>Apps</strong>
+        <span>Aplicações corporativas low-code para fluxos internos</span>
+      </div>
+      <div class="metric">
+        <strong>ETL</strong>
+        <span>Tratamento e organização de dados para análise confiável</span>
+      </div>
+      <div class="metric">
+        <strong>Impacto</strong>
+        <span>Redução de tarefas manuais e padronização de processos</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="section-header">
+      <div class="eyebrow">Sobre Mim</div>
+      <h2>Da análise ao produto digital</h2>
+      <p>
+        Sou um profissional orientado a resultado, com perfil analítico e visão de produto.
+        Gosto de transformar dores operacionais em fluxos automáticos, painéis de monitoramento
+        e aplicações que facilitem a rotina de times técnicos e de negócio.
+      </p>
+    </div>
+
+    <div class="grid stagger">
+      <div class="card">
+        <span class="label">Como eu penso</span>
+        <h3>Problema primeiro, ferramenta depois</h3>
+        <p>
+          Antes de desenvolver, mapeio processo, gargalo e objetivo de negócio.
+          Isso permite construir uma solução enxuta, com governança e adoção real.
+        </p>
+      </div>
+
+      <div class="card">
+        <span class="label">Como eu entrego</span>
+        <h3>Dados confiáveis e experiência clara</h3>
+        <p>
+          Unifico fontes, estruturo métricas e crio interfaces intuitivas para
+          acelerar a tomada de decisão com segurança e autonomia.
+        </p>
+      </div>
+
+      <div class="card">
+        <span class="label">Como eu evoluo</span>
+        <h3>Aprendizado contínuo</h3>
+        <p>
+          Tenho interesse constante em novas tecnologias e boas práticas de arquitetura,
+          automação e engenharia de dados para ampliar o impacto das soluções.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tecnologias">
+    <div class="section-header">
+      <div class="eyebrow">Tecnologias</div>
+      <h2>Ferramentas e nível de atuação</h2>
+      <p>
+        Níveis baseados na minha experiência prática em projetos corporativos.
+      </p>
+    </div>
+
+    <div class="tech-list stagger">
+      <div class="tech-item">
+        <div class="tech-row"><span class="tech-name">Power BI</span><span class="tech-level">Avançado</span></div>
+        <div class="bar"><div class="fill l95"></div></div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-row"><span class="tech-name">Power Apps</span><span class="tech-level">Avançado</span></div>
+        <div class="bar"><div class="fill l90"></div></div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-row"><span class="tech-name">Power Automate</span><span class="tech-level">Avançado</span></div>
+        <div class="bar"><div class="fill l90"></div></div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-row"><span class="tech-name">SQL</span><span class="tech-level">Avançado</span></div>
+        <div class="bar"><div class="fill l85"></div></div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-row"><span class="tech-name">Databricks</span><span class="tech-level">Intermediário</span></div>
+        <div class="bar"><div class="fill l80"></div></div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-row"><span class="tech-name">Python</span><span class="tech-level">Intermediário</span></div>
+        <div class="bar"><div class="fill l80"></div></div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-row"><span class="tech-name">HTML, CSS, JavaScript, React</span><span class="tech-level">Intermediário</span></div>
+        <div class="bar"><div class="fill l75"></div></div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-row"><span class="tech-name">SAP e SharePoint</span><span class="tech-level">Intermediário</span></div>
+        <div class="bar"><div class="fill l70"></div></div>
+      </div>
+    </div>
+
+    <div class="privacy-note">
+      Escala de proficiência voltada para posicionamento em recrutamento.
+      Pode ser ajustada conforme vaga e contexto técnico.
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="section-header">
+      <div class="eyebrow">Projetos</div>
+      <h2>Casos públicos de solução</h2>
+      <p>
+        Cada caso resume problema, solução, tecnologias e resultado. Conteúdos sensíveis foram anonimimizados.
+      </p>
+    </div>
+
+    <div class="grid stagger">
+      <article class="card">
+        <span class="label">Power BI</span>
+        <h3>Painel Executivo de Investimentos</h3>
+        <div class="block-title">Problema</div>
+        <p>Falta de visão consolidada entre avanço físico, financeiro e prioridade de projetos.</p>
+        <div class="block-title">Solução</div>
+        <p>Dashboard com indicadores-chave, alertas e comparativos para acompanhamento gerencial.</p>
+        <div class="block-title">Resultado</div>
+        <p>Mais agilidade em reuniões de decisão e maior confiabilidade na leitura de status.</p>
+        <div class="chip-wrap">
+          <span class="chip">Power BI</span>
+          <span class="chip">DAX</span>
+          <span class="chip">SQL</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="label">Power Apps</span>
+        <h3>Sistema Interno de Gestão de Demandas</h3>
+        <div class="block-title">Problema</div>
+        <p>Solicitações dispersas por e-mail e planilhas, sem rastreabilidade consistente.</p>
+        <div class="block-title">Solução</div>
+        <p>Aplicação com cadastro de demandas, fluxo de aprovação e histórico de status.</p>
+        <div class="block-title">Resultado</div>
+        <p>Padronização de processo e redução do tempo de resposta entre áreas.</p>
+        <div class="chip-wrap">
+          <span class="chip">Power Apps</span>
+          <span class="chip">SharePoint</span>
+          <span class="chip">Power Automate</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="label">Automação</span>
+        <h3>Fluxo de Aprovação e Notificação</h3>
+        <div class="block-title">Problema</div>
+        <p>Atividades recorrentes com alto volume manual e risco de atraso operacional.</p>
+        <div class="block-title">Solução</div>
+        <p>Automação ponta a ponta para validação, notificação e atualização de bases.</p>
+        <div class="block-title">Resultado</div>
+        <p>Execução previsível, menor retrabalho e controle centralizado do processo.</p>
+        <div class="chip-wrap">
+          <span class="chip">Power Automate</span>
+          <span class="chip">Outlook</span>
+          <span class="chip">SharePoint</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="label">Dados</span>
+        <h3>Pipeline para Base Analítica</h3>
+        <div class="block-title">Problema</div>
+        <p>Dados em múltiplas fontes sem padrão para análise e consumo por BI.</p>
+        <div class="block-title">Solução</div>
+        <p>Tratamento e transformação com regras de qualidade para consumo analítico.</p>
+        <div class="block-title">Resultado</div>
+        <p>Métricas consistentes, menor tempo de preparação e mais confiança nos indicadores.</p>
+        <div class="chip-wrap">
+          <span class="chip">Databricks</span>
+          <span class="chip">SQL</span>
+          <span class="chip">Python</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="section-header" style="margin-top: 34px;">
+      <div class="eyebrow">Galeria de Projetos</div>
+      <p>
+        Espaço para adicionar capturas de dashboards, telas de aplicações, fluxogramas e diagramas.
+      </p>
+    </div>
+
+    <div class="gallery stagger">
+      <div class="gallery-item">
+        <div class="gallery-preview">Dashboard</div>
+        <p>Painel executivo com visão de indicadores e evolução temporal.</p>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-preview">Aplicação</div>
+        <p>Interface de gestão operacional construída para uso interno.</p>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-preview">Fluxo</div>
+        <p>Automação de processo com etapas de validação e notificação.</p>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-preview">Arquitetura</div>
+        <p>Diagrama simplificado de integração entre sistemas e camada analítica.</p>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top: 34px;">
+      <div class="eyebrow">Antes e Depois</div>
+      <p>
+        Comparativos de transformação de processo para demonstrar valor entregue.
+      </p>
+    </div>
+
+    <div class="compare-grid stagger">
+      <div class="compare-card">
+        <h3 class="compare-title">Consolidação de Indicadores</h3>
+        <div class="before"><strong>Antes:</strong> Atualização manual de planilhas e baixa visibilidade de prioridade.</div>
+        <div class="after"><strong>Depois:</strong> Indicadores centralizados em dashboard com atualização e leitura padronizada.</div>
+      </div>
+      <div class="compare-card">
+        <h3 class="compare-title">Gestão de Demandas</h3>
+        <div class="before"><strong>Antes:</strong> Fluxo informal, sem trilha de auditoria e sem SLA definido.</div>
+        <div class="after"><strong>Depois:</strong> Aplicação com status, histórico e responsabilidade por etapa.</div>
+      </div>
+      <div class="compare-card">
+        <h3 class="compare-title">Aprovação Operacional</h3>
+        <div class="before"><strong>Antes:</strong> Aprovações descentralizadas e alto risco de atraso.</div>
+        <div class="after"><strong>Depois:</strong> Automação com alertas, gatilhos e visibilidade de pendências.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="habilidades">
+    <div class="section-header">
+      <div class="eyebrow">Habilidades</div>
+      <h2>O que eu sei fazer</h2>
+      <p>
+        Competências práticas aplicadas em projetos de dados, automação e transformação digital.
+      </p>
+    </div>
+
+    <div class="grid stagger">
+      <div class="card">
+        <span class="label">Business Intelligence</span>
+        <h3>Power BI de ponta a ponta</h3>
+        <p>Modelagem, DAX, construção de KPIs, dashboards executivos, drill-down e storytelling com dados.</p>
+      </div>
+      <div class="card">
+        <span class="label">Power Apps</span>
+        <h3>Apps corporativos low-code</h3>
+        <p>Formulários, CRUDs, integrações, componentes reutilizáveis e aplicações com foco em adoção.</p>
+      </div>
+      <div class="card">
+        <span class="label">Power Automate</span>
+        <h3>Processos automatizados</h3>
+        <p>Fluxos de aprovação, notificações, integração entre serviços e redução de tarefas repetitivas.</p>
+      </div>
+      <div class="card">
+        <span class="label">Dados</span>
+        <h3>Tratamento e preparação</h3>
+        <p>ETL, qualidade de dados, consultas SQL, organização de base analítica e suporte à governança.</p>
+      </div>
+      <div class="card">
+        <span class="label">Integração</span>
+        <h3>Sistemas corporativos</h3>
+        <p>Conexão entre plataformas para criar fluxo de informação confiável e decisões mais rápidas.</p>
+      </div>
+      <div class="card">
+        <span class="label">Soft Skills</span>
+        <h3>Execução com colaboração</h3>
+        <p>Pensamento analítico, comunicação clara, proatividade e atuação próxima às áreas de negócio.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experiencia">
+    <div class="section-header">
+      <div class="eyebrow">Experiência Profissional</div>
+      <h2>Atuação orientada a resultado</h2>
+      <p>
+        Histórico resumido em formato público, com foco em responsabilidades e impacto.
+      </p>
+    </div>
+
+    <div class="experience stagger">
+      <article class="job">
+        <div class="job-head">
+          <h3>Analista de Dados e Automação</h3>
+          <span class="period">2025 - Atual</span>
+        </div>
+        <p>Empresa de grande porte do setor de logística e infraestrutura.</p>
+        <ul>
+          <li>Desenvolvimento de dashboards estratégicos para gestão de iniciativas e indicadores.</li>
+          <li>Automação de processos operacionais para reduzir esforço manual e aumentar previsibilidade.</li>
+          <li>Criação de aplicações internas para padronização de fluxos e rastreabilidade.</li>
+          <li>Integração de soluções com sistemas corporativos e múltiplas fontes de dados.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Estágio em Controladoria e Logística</h3>
+          <span class="period">2024 - 2025</span>
+        </div>
+        <p>Atuação em análise de dados para acompanhamento de custos e eficiência operacional.</p>
+        <ul>
+          <li>Apoio em organização e consolidação de informações para tomada de decisão financeira.</li>
+          <li>Participação em melhorias de processo e automação de rotinas de controle.</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="privacy-note">
+      Versão pública: nomes de empresas, áreas e detalhes internos foram resumidos para preservar confidencialidade.
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="section-header">
+      <div class="eyebrow">Contato</div>
+      <h2>Vamos construir algo relevante?</h2>
+      <p>
+        Aberto a oportunidades em tecnologia, dados, automação e desenvolvimento de soluções corporativas.
+      </p>
+    </div>
+
+    <div class="contact-grid stagger">
+      <a class="contact-item" href="mailto:quitzau.murillo@gmail.com">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">quitzau.murillo@gmail.com</span>
+      </a>
+
+      <a class="contact-item" href="https://wa.me/5519971122221" target="_blank" rel="noopener">
+        <span class="contact-label">WhatsApp</span>
+        <span class="contact-value">+55 (19) 97112-2221</span>
+      </a>
+
+      <a class="contact-item" href="https://linkedin.com/in/murilo-quitzau" target="_blank" rel="noopener">
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-value">linkedin.com/in/murilo-quitzau</span>
+      </a>
+
+      <a class="contact-item" href="https://github.com/klebermurillo" target="_blank" rel="noopener">
+        <span class="contact-label">GitHub</span>
+        <span class="contact-value">github.com/klebermurillo</span>
+      </a>
+
+      <a class="contact-item" href="#" aria-disabled="true">
+        <span class="contact-label">Currículo PDF</span>
+        <span class="contact-value">Versão pública disponível sob solicitação</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © 2026 - Murilo Quitzau - Portfólio Digital Público
+</footer>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll("section").forEach(function(section) {
+      section.classList.remove("active");
+    });
+    document.querySelectorAll(".nav-links a").forEach(function(link) {
+      link.classList.remove("active-link");
+    });
+
+    var selectedSection = document.getElementById(id);
+    var selectedNav = document.getElementById("nav-" + id);
+
+    if (selectedSection && selectedNav) {
+      selectedSection.classList.add("active");
+      selectedNav.classList.add("active-link");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+</script>
+
+</body>
+</html>
