@@ -156,6 +156,27 @@
       gap: 6px;
     }
 
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 7px 13px;
+      background: transparent;
+      transition: all 0.2s ease;
+    }
+
+    .menu-toggle:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
     .nav-links a {
       cursor: pointer;
       color: var(--muted);
@@ -1036,16 +1057,37 @@
 
     @media (max-width: 760px) {
       nav {
-        flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .nav-links {
+        display: none;
+        width: 100%;
         justify-content: flex-start;
+        gap: 8px;
+        padding-top: 10px;
       }
 
+      nav.menu-open .nav-links {
+        display: flex;
+      }
+
+      .nav-links {
+        flex-direction: column;
+      }
+
+      .nav-links a,
       .theme-toggle {
         width: 100%;
+        text-align: left;
       }
 
       .carousel-control {
@@ -1107,9 +1149,10 @@
 <body>
 
 <header>
-  <nav>
+  <nav id="main-nav">
     <div class="logo">M. Quitzau</div>
-    <div class="nav-links">
+    <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu">Menu</button>
+    <div class="nav-links" id="nav-links">
       <a onclick="showSection('home')" class="active-link" id="nav-home">Início</a>
       <a onclick="showSection('sobre')" id="nav-sobre">Sobre</a>
       <a onclick="showSection('tecnologias')" id="nav-tecnologias">Tecnologias</a>
@@ -1949,6 +1992,51 @@
     });
   }
 
+  function closeMobileMenu() {
+    var nav = document.getElementById("main-nav");
+    var menuToggle = document.getElementById("menu-toggle");
+
+    if (!nav || !menuToggle) {
+      return;
+    }
+
+    nav.classList.remove("menu-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.textContent = "Menu";
+    menuToggle.setAttribute("aria-label", "Abrir menu");
+  }
+
+  function initializeMobileMenu() {
+    var nav = document.getElementById("main-nav");
+    var menuToggle = document.getElementById("menu-toggle");
+    var navLinks = Array.from(document.querySelectorAll("#nav-links a"));
+
+    if (!nav || !menuToggle) {
+      return;
+    }
+
+    menuToggle.addEventListener("click", function() {
+      var isOpen = nav.classList.toggle("menu-open");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      menuToggle.textContent = isOpen ? "Fechar" : "Menu";
+      menuToggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+    });
+
+    navLinks.forEach(function(link) {
+      link.addEventListener("click", function() {
+        if (window.innerWidth <= 760) {
+          closeMobileMenu();
+        }
+      });
+    });
+
+    window.addEventListener("resize", function() {
+      if (window.innerWidth > 760) {
+        closeMobileMenu();
+      }
+    });
+  }
+
   function showSection(id) {
     document.querySelectorAll("section").forEach(function(section) {
       section.classList.remove("active");
@@ -1963,6 +2051,9 @@
     if (selectedSection && selectedNav) {
       selectedSection.classList.add("active");
       selectedNav.classList.add("active-link");
+      if (window.innerWidth <= 760) {
+        closeMobileMenu();
+      }
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
@@ -1970,6 +2061,7 @@
   initializeTheme();
   initializeCarousel();
   initializeInfoModal();
+  initializeMobileMenu();
   var themeToggleButton = document.getElementById("theme-toggle");
   if (themeToggleButton) {
     themeToggleButton.addEventListener("click", toggleTheme);
