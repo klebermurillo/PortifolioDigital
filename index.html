@@ -951,6 +951,32 @@
       overflow-wrap: anywhere;
     }
 
+    .contact-actions {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .contact-action {
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 7px 10px;
+      color: var(--heading);
+      background: var(--btn-bg);
+      transition: all 0.2s ease;
+    }
+
+    .contact-action:hover {
+      border-color: rgba(18, 96, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
     .privacy-note {
       margin-top: 14px;
       font-size: 13px;
@@ -1680,10 +1706,14 @@
         <span class="contact-value">github.com/klebermurillo</span>
       </a>
 
-      <a class="contact-item" href="#" aria-disabled="true">
+      <div class="contact-item">
         <span class="contact-label">Currículo PDF</span>
-        <span class="contact-value">Versão pública disponível sob solicitação</span>
-      </a>
+        <span class="contact-value">Visualize no navegador ou faça o download</span>
+        <div class="contact-actions">
+          <a class="contact-action" href="Murilo Henrique - Curriculo.pdf" target="_blank" rel="noopener">Ver prévia</a>
+          <a class="contact-action" href="Murilo Henrique - Curriculo.pdf" download="Murilo Henrique - Curriculo.pdf">Baixar PDF</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
