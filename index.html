@@ -159,6 +159,8 @@
     .menu-toggle {
       display: none;
       cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
       color: var(--muted);
       font-size: 12px;
       font-weight: 700;
@@ -1153,13 +1155,13 @@
     <div class="logo">M. Quitzau</div>
     <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu">Menu</button>
     <div class="nav-links" id="nav-links">
-      <a onclick="showSection('home')" class="active-link" id="nav-home">Início</a>
-      <a onclick="showSection('sobre')" id="nav-sobre">Sobre</a>
-      <a onclick="showSection('tecnologias')" id="nav-tecnologias">Tecnologias</a>
-      <a onclick="showSection('projetos')" id="nav-projetos">Projetos</a>
-      <a onclick="showSection('habilidades')" id="nav-habilidades">Habilidades</a>
-      <a onclick="showSection('experiencia')" id="nav-experiencia">Experiência</a>
-      <a onclick="showSection('contato')" id="nav-contato">Contato</a>
+      <a href="#home" data-section="home" class="active-link" id="nav-home">Início</a>
+      <a href="#sobre" data-section="sobre" id="nav-sobre">Sobre</a>
+      <a href="#tecnologias" data-section="tecnologias" id="nav-tecnologias">Tecnologias</a>
+      <a href="#projetos" data-section="projetos" id="nav-projetos">Projetos</a>
+      <a href="#habilidades" data-section="habilidades" id="nav-habilidades">Habilidades</a>
+      <a href="#experiencia" data-section="experiencia" id="nav-experiencia">Experiência</a>
+      <a href="#contato" data-section="contato" id="nav-contato">Contato</a>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema">Tema: Escuro</button>
     </div>
   </nav>
@@ -1187,8 +1189,8 @@
           números e dados sensíveis foram adaptados para preservar sigilo corporativo.
         </div>
         <div class="hero-actions">
-          <a class="btn primary" href="#" onclick="showSection('projetos')">Explorar Projetos</a>
-          <a class="btn" href="#" onclick="showSection('contato')">Falar Comigo</a>
+          <a class="btn primary" href="#projetos" data-section="projetos">Explorar Projetos</a>
+          <a class="btn" href="#contato" data-section="contato">Falar Comigo</a>
           <a class="btn" href="Murilo Henrique - Curriculo.pdf" download="Murilo Henrique - Curriculo.pdf">Baixar Currículo</a>
         </div>
       </div>
@@ -2014,7 +2016,7 @@
   function initializeMobileMenu() {
     var nav = document.getElementById("main-nav");
     var menuToggle = document.getElementById("menu-toggle");
-    var navLinks = Array.from(document.querySelectorAll("#nav-links a"));
+    var navLinks = Array.from(document.querySelectorAll("#nav-links a[data-section]"));
 
     if (!nav || !menuToggle) {
       return;
@@ -2039,6 +2041,21 @@
       if (window.innerWidth > 760) {
         closeMobileMenu();
       }
+    });
+  }
+
+  function initializeSectionNavigation() {
+    var sectionLinks = Array.from(document.querySelectorAll("a[data-section]"));
+
+    sectionLinks.forEach(function(link) {
+      link.addEventListener("click", function(event) {
+        var sectionId = link.getAttribute("data-section");
+        if (!sectionId) {
+          return;
+        }
+        event.preventDefault();
+        showSection(sectionId);
+      });
     });
   }
 
@@ -2067,6 +2084,7 @@
   initializeCarousel();
   initializeInfoModal();
   initializeMobileMenu();
+  initializeSectionNavigation();
   var themeToggleButton = document.getElementById("theme-toggle");
   if (themeToggleButton) {
     themeToggleButton.addEventListener("click", toggleTheme);
